@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* ── OpenScope Design System ────────────────────────────────────────────── */
+
+@theme inline {
+  /* Background palette — deep navy/slate */
+  --color-bg-primary: #0b0f1a;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #1a2035;
+  --color-bg-card-hover: #1e2640;
+  --color-bg-input: #0f1629;
+  --color-bg-sidebar: #0d1220;
+
+  /* Border palette */
+  --color-border-default: #1e293b;
+  --color-border-subtle: #162032;
+  --color-border-accent: #1e3a5f;
+
+  /* Text palette */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-heading: #f1f5f9;
+
+  /* Accent palette — muted teal, deep blue, amber */
+  --color-accent-teal: #2dd4bf;
+  --color-accent-teal-dim: #14b8a6;
+  --color-accent-blue: #3b82f6;
+  --color-accent-blue-dim: #1e40af;
+  --color-accent-amber: #f59e0b;
+  --color-accent-amber-dim: #d97706;
+  --color-accent-red: #ef4444;
+  --color-accent-green: #22c55e;
+
+  /* Gradients */
+  --gradient-card: linear-gradient(135deg, #1a2035 0%, #111827 100%);
+  --gradient-header: linear-gradient(90deg, #0b0f1a 0%, #111827 100%);
+  --gradient-accent: linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%);
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow-teal: 0 0 20px rgba(45, 212, 191, 0.15);
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar Styling ──────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Utility Animations ─────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(45, 212, 191, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.shimmer-loading {
+  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-bg-card-hover) 50%, var(--color-bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Card Base ──────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--gradient-card);
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-accent);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ── Copy Tooltip ───────────────────────────────────────────────────────── */
+
+.copy-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+tr:hover .copy-btn,
+.group:hover .copy-btn {
+  opacity: 1;
+}
